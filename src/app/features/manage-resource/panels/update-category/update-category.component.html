@@ -1,0 +1,40 @@
+<v-overlay>
+  <div class="bg-surface p-8 rounded-3xl max-w-sm mx-auto">
+    <form [formGroup]="form" (ngSubmit)="update()" class="space-y-8">
+      <h3 class="text-xl font-bold text-center">แก้ไขข้อมูลหมวดหมู่</h3>
+      <div class="space-y-4">
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold">รหัสหมวดหมู่</label>
+          <input
+            type="text"
+            class="px-4 py-2 rounded-xl bg-surface-container dark:bg-dark-surface-container"
+            formControlName="id"
+            readonly
+          />
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold">ชื่อหมวดหมู่</label>
+          <input
+            type="text"
+            class="px-4 py-2 rounded-xl bg-surface-container dark:bg-dark-surface-container"
+            formControlName="name"
+          />
+          @if (name?.hasError("required") && name?.touched) {
+          <span class="text-error dark:text-dark-error text-xs"
+            >* จำเป็นต้องใส่ชื่อหมวดหมู่</span
+          >
+          }
+        </div>
+      </div>
+      @if (failured) {
+      <span class="block text-error dark:text-dark-error text-xs">{{
+        err
+      }}</span>
+      }
+      <div class="grid grid-cols-2 place-items-center font-semibold">
+        <button>บันทึก</button>
+        <button type="button" (click)="close()">ยกเลิก</button>
+      </div>
+    </form>
+  </div>
+</v-overlay>

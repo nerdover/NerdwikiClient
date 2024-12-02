@@ -1,0 +1,92 @@
+<div>
+  <div
+    class="flex flex-col md:flex-row p-4 gap-4 md:items-center justify-between"
+  >
+    <h3 class="text-2xl font-bold">จัดการบทเรียน</h3>
+    <button
+      (click)="setAndOpenCreatePanel()"
+      class="px-4 py-2 rounded-xl font-semibold bg-primary text-on-primary dark:bg-dark-primary dark:text-dark-on-primary"
+    >
+      สร้างบทเรียน
+    </button>
+  </div>
+  @if (contentService.lessons()) {
+  <div class="overflow-x-auto relative">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="*:px-4 *:py-2 *:text-nowrap">
+          <th>หมวดหมู่</th>
+          <th>หมวดหมู่ย่อย</th>
+          <th class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+            รหัสบทเรียน
+          </th>
+          <th class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+            ชื่อบทเรียน
+          </th>
+          <th>สร้างเมื่อ</th>
+          <th>แก้ไขล่าสุด</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (lesson of contentService.lessons(); track $index) {
+        <tr
+          class="*:px-4 *:py-2 *:text-nowrap even:bg-surface-container-high hover:bg-surface-container-highest dark:even:bg-dark-surface-container-high dark:hover:bg-dark-surface-container-highest"
+        >
+          <td>{{ lesson.categoryId }}</td>
+          <td>{{ lesson.topicId }}</td>
+          <td class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+            {{ lesson.id }}
+          </td>
+          <td class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+            {{ lesson.title }}
+          </td>
+          <td>{{ lesson.createdAt | date }}</td>
+          <td>{{ lesson.updatedAt | date }}</td>
+          <td>
+            <button
+              (click)="setAndOpenEditPanel(lesson)"
+              class="underline font-semibold text-secondary dark:text-dark-secondary"
+            >
+              แก้ไข
+            </button>
+          </td>
+          <td>
+            <button
+              [routerLink]="['/', 'manage-resource', 'edit', lesson.id]"
+              class="underline font-semibold text-secondary dark:text-dark-secondary"
+            >
+              เนื้อหา
+            </button>
+          </td>
+          <td>
+            <button
+              (click)="setAndOpenDeletePanel(lesson)"
+              class="underline font-semibold text-error dark:text-dark-error"
+            >
+              ลบ
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
+
+@if (createPanel.isOpened) {
+<v-create-lesson [action]="dummy" (closed)="setAndCloseCreatePanel()" />
+} @if (editPanel.isOpened && currentAction()) {
+<v-update-lesson
+  [action]="currentAction()!"
+  (closed)="setAndCloseEditPanel()"
+/>
+} @if (deletePanel.isOpened && currentAction()) {
+<v-delete-lesson
+  [action]="currentAction()!"
+  (closed)="setAndCloseDeletePanel()"
+/>
+}

@@ -1,0 +1,51 @@
+<header class="flex justify-between items-center gap-8 p-4">
+  <div class="flex items-center gap-4">
+    <button (click)="openMenuAndLockBody()" class="md:hidden flex items-center">
+      <i class="ms">menu</i>
+    </button>
+    <p class="text-2xl font-bold">เนิร์ดวิกิ</p>
+  </div>
+  <nav class="hidden md:block">
+    <ul class="flex items-center gap-4">
+      <li><a routerLink="/">หน้าหลัก</a></li>
+      <li><a routerLink="/resource">คลังบทเรียน</a></li>
+      @if (auth.isSigningIn()) { @if (auth.currentRoles()?.includes(Role.Admin)
+      || auth.currentRoles() === Role.Admin) {
+      <li><a routerLink="/manage-resource">จัดการคลัง</a></li>
+      }
+      <li>ออกจากระบบ</li>
+      } @else {
+      <li><a routerLink="/sign-in">เข้าสู่ระบบ</a></li>
+      }
+    </ul>
+  </nav>
+</header>
+
+@if (menuPanel.isOpened) {
+<div
+  @fade
+  (click)="closeMenuAndUnlockBody()"
+  class="fixed top-0 left-0 w-full h-dvh bg-scrim/50 dark:bg-dark-scrim/50 backdrop-blur z-[99]"
+></div>
+<div
+  @leftSlide256
+  class="fixed top-0 left-0 w-64 min-h-dvh bg-surface-container dark:bg-dark-surface-container rounded-e-3xl shadow z-[100] p-4"
+>
+  <div class="flex justify-end">
+    <button (click)="closeMenuAndUnlockBody()">
+      <i class="ms">close</i>
+    </button>
+  </div>
+  <nav>
+    <ul>
+      <li><a routerLink="/">หน้าหลัก</a></li>
+      <li><a routerLink="/resource">คลังบทเรียน</a></li>
+      @if (auth.isSigningIn()) {
+      <li>SIGNOUT</li>
+      } @else {
+      <li><a routerLink="/sign-in">เข้าสู่ระบบ</a></li>
+      }
+    </ul>
+  </nav>
+</div>
+}

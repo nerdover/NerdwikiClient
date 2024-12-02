@@ -1,0 +1,68 @@
+<div>
+  <div
+    class="flex flex-col md:flex-row p-4 gap-4 md:items-center justify-between"
+  >
+    <h3 class="text-2xl font-bold">จัดการหมวดหมู่ย่อย</h3>
+    <button
+      (click)="setAndOpenCreatePanel()"
+      class="px-4 py-2 rounded-xl font-semibold bg-primary text-on-primary dark:bg-dark-primary dark:text-dark-on-primary"
+    >
+      สร้างหมวดหมู่ย่อย
+    </button>
+  </div>
+  @if (contentService.topics()) {
+  <div class="overflow-x-auto relative">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="*:px-4 *:py-2 *:text-nowrap">
+          <th>รหัสหมวดหมู่ย่อย</th>
+          <th>ชื่อหมวดหมู่ย่อย</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (topic of contentService.topics(); track $index) {
+        <tr
+          class="*:px-4 *:py-2 *:text-nowrap even:bg-surface-container-high hover:bg-surface-container-highest dark:even:bg-dark-surface-container-high dark:hover:bg-dark-surface-container-highest"
+        >
+          <td>{{ topic.categoryId }}</td>
+          <td>{{ topic.id }}</td>
+          <td>{{ topic.name }}</td>
+          <td>
+            <button
+              (click)="setAndOpenEditPanel(topic)"
+              class="underline font-semibold text-secondary dark:text-dark-secondary"
+            >
+              แก้ไข
+            </button>
+          </td>
+          <td>
+            <button
+              (click)="setAndOpenDeletePanel(topic)"
+              class="underline font-semibold text-error dark:text-dark-error"
+            >
+              ลบ
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
+
+@if (createPanel.isOpened) {
+  <v-create-topic [action]="dummy" (closed)="setAndCloseCreatePanel()" />
+  } @if (editPanel.isOpened && currentAction()) {
+  <v-update-topic
+    [action]="currentAction()!"
+    (closed)="setAndCloseEditPanel()"
+  />
+  } @if (deletePanel.isOpened && currentAction()) {
+  <v-delete-topic
+    [action]="currentAction()!"
+    (closed)="setAndCloseDeletePanel()"
+  />
+  }

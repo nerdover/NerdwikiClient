@@ -1,0 +1,67 @@
+<div>
+  <div
+    class="flex flex-col md:flex-row p-4 gap-4 md:items-center justify-between"
+  >
+    <h3 class="text-2xl font-bold">จัดการหมวดหมู่</h3>
+    <button
+      (click)="setAndOpenCreatePanel()"
+      class="px-4 py-2 rounded-xl font-semibold bg-primary text-on-primary dark:bg-dark-primary dark:text-dark-on-primary"
+    >
+      สร้างหมวดหมู่
+    </button>
+  </div>
+  @if (contentService.categories()) {
+  <div class="overflow-x-auto relative">
+    <table class="w-full text-left text-sm">
+      <thead>
+        <tr class="*:px-4 *:py-2 *:text-nowrap">
+          <th>รหัสหมวดหมู่</th>
+          <th>ชื่อหมวดหมู่</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (category of contentService.categories(); track $index) {
+        <tr
+          class="*:px-4 *:py-2 *:text-nowrap even:bg-surface-container-high hover:bg-surface-container-highest dark:even:bg-dark-surface-container-high dark:hover:bg-dark-surface-container-highest"
+        >
+          <td>{{ category.id }}</td>
+          <td>{{ category.name }}</td>
+          <td>
+            <button
+              (click)="setAndOpenEditPanel(category)"
+              class="underline font-semibold text-secondary dark:text-dark-secondary"
+            >
+              แก้ไข
+            </button>
+          </td>
+          <td>
+            <button
+              (click)="setAndOpenDeletePanel(category)"
+              class="underline font-semibold text-error dark:text-dark-error"
+            >
+              ลบ
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+</div>
+
+@if (createPanel.isOpened) {
+<v-create-category [action]="dummy" (closed)="setAndCloseCreatePanel()" />
+} @if (editPanel.isOpened && currentAction()) {
+<v-update-category
+  [action]="currentAction()!"
+  (closed)="setAndCloseEditPanel()"
+/>
+} @if (deletePanel.isOpened && currentAction()) {
+<v-delete-category
+  [action]="currentAction()!"
+  (closed)="setAndCloseDeletePanel()"
+/>
+}

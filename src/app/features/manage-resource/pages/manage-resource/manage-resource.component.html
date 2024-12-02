@@ -1,0 +1,25 @@
+<div class="pb-8">
+  <nav class="ms-8">
+    <ul class="flex items-center gap-1 text-sm">
+      @for (tab of tabs; track $index) {
+      <li>
+        <a
+          [routerLink]="['/', 'manage-resource', tab.path]"
+          [routerLinkActive]="[
+            'font-semibold',
+            'bg-surface-container-low',
+            'dark:bg-dark-surface-container-low'
+          ]"
+          class="block px-4 py-2 rounded-t-xl bg-surface-container-low dark:bg-dark-surface-container-low"
+          >{{ tab.label }}</a
+        >
+      </li>
+      }
+    </ul>
+  </nav>
+  <div
+    class="min-h-dvh bg-surface-container-low dark:bg-dark-surface-container-low rounded-xl pb-4"
+  >
+    <router-outlet />
+  </div>
+</div>
