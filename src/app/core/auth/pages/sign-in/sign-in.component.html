@@ -12,31 +12,43 @@
     </div>
     }
 
-    <div class="space-y-2">
-      <div class="space-y-1">
-        <label class="text-sm font-semibold">ชื่อผู้ใช้</label>
-        <input
-          type="text"
-          [(ngModel)]="username"
-          class="w-full px-4 py-2 rounded-xl bg-surface-dim dark:bg-dark-surface-dim"
-        />
-      </div>
+    <form [formGroup]="form" (ngSubmit)="signIn()" class="space-y-8">
       <div class="space-y-2">
-        <label class="text-sm font-semibold">รหัสผ่าน</label>
-        <input
-          type="text"
-          [(ngModel)]="password"
-          class="w-full px-4 py-2 rounded-xl bg-surface-dim dark:bg-dark-surface-dim"
-        />
+        <div class="space-y-1">
+          <label class="text-sm font-semibold">ชื่อผู้ใช้</label>
+          <input
+            type="text"
+            formControlName="username"
+            class="w-full px-4 py-2 rounded-xl bg-surface-dim dark:bg-dark-surface-dim"
+          />
+          @if (username?.hasError("required") && username?.touched) {
+          <span class="text-error dark:text-dark-error text-xs"
+            >* จำเป็นต้องใส่ชื่อผู้ใช้</span
+          >
+          }
+        </div>
+        <div class="space-y-2">
+          <label class="text-sm font-semibold">รหัสผ่าน</label>
+          <input
+            type="password"
+            formControlName="password"
+            class="w-full px-4 py-2 rounded-xl bg-surface-dim dark:bg-dark-surface-dim"
+          />
+          @if (password?.hasError("required") && password?.touched) {
+          <span class="text-error dark:text-dark-error text-xs"
+            >* จำเป็นต้องใส่รหัสผ่าน</span
+          >
+          }
+        </div>
       </div>
-    </div>
 
-    <button
-      (click)="signIn()"
-      class="w-full px-4 py-2 rounded-xl font-semibold bg-primary dark:bg-dark-primary text-on-primary dark:text-dark-on-primary"
-    >
-      เข้าสู่ระบบ
-    </button>
+      <button
+        (click)="signIn()"
+        class="w-full px-4 py-2 rounded-xl font-semibold bg-primary dark:bg-dark-primary text-on-primary dark:text-dark-on-primary"
+      >
+        เข้าสู่ระบบ
+      </button>
+    </form>
 
     <hr />
 
