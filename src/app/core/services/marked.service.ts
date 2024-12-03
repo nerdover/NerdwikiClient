@@ -32,6 +32,7 @@ const katexOptions = {
 
 marked.setOptions({
   renderer,
+  breaks: true,
 });
 
 declare let Prism: {
