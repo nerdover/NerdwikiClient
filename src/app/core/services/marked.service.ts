@@ -32,7 +32,6 @@ const katexOptions = {
 
 marked.setOptions({
   renderer,
-  breaks: true,
 });
 
 declare let Prism: {
@@ -48,7 +47,6 @@ export class MarkedService {
   parse(container: ElementRef<HTMLElement>, content: string) {
     let dataHtml = marked.parse(content, {
       async: false,
-      // breaks: true,
     });
 
     container.nativeElement.innerHTML = dataHtml;

@@ -1,0 +1,22 @@
+<div class="py-4 space-y-4">
+  <h1 class="text-4xl font-black">{{ lesson()?.title }}</h1>
+  <p>{{ lesson()?.description }}</p>
+  <div class="flex items-center gap-2">
+    <div
+      class="px-2 py-1 text-xs bg-secondary text-on-secondary font-semibold rounded-lg"
+    >
+      {{ lesson()?.categoryId }}
+    </div>
+    <div
+      class="px-2 py-1 text-xs bg-tertiary text-on-tertiary font-semibold rounded-lg"
+    >
+      {{ lesson()?.topicId }}
+    </div>
+  </div>
+  <div>
+    <span class="text-xs">4 days ago</span>
+  </div>
+  <div>
+    <v-content-view [content]="lesson()!.content" />
+  </div>
+</div>

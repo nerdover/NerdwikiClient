@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ContentService } from '../../../../core/services/content.service';
 import type { Lesson } from '../../../../core/models/lesson';
+import { LessonCardComponent } from "../../components/lesson-card/lesson-card.component";
+import { CategoryCardComponent } from "../../components/category-card/category-card.component";
 
 @Component({
   selector: 'v-resource',
-  imports: [],
+  imports: [LessonCardComponent, CategoryCardComponent],
   templateUrl: './resource.component.html',
   styleUrl: './resource.component.scss'
 })
