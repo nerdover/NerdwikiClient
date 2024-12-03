@@ -21,7 +21,15 @@ export class ContentService {
 
   getCategories = () => this.http.get<Category[]>(this.categoryUrl);
   getTopics = () => this.http.get<Topic[]>(this.topicUrl);
-  getLessons = () => this.http.get<Lesson[]>(this.lessonUrl);
+  getLessons = (categoryId?: string) => {
+    let params = {};
+    if (categoryId) {
+      params = { categoryId };
+    }
+    return this.http.get<Lesson[]>(this.lessonUrl, {
+      params,
+    });
+  };
 
   getCategoryById = (id: string) =>
     this.http.get<Category>(`${this.categoryUrl}/${id}`);

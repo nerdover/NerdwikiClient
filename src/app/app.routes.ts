@@ -7,6 +7,8 @@ import { ContentComponent } from './features/resource/pages/content/content.comp
 import { inject } from '@angular/core';
 import { ContentService } from './core/services/content.service';
 import { catchError, of } from 'rxjs';
+import { CategoryComponent } from './features/resource/pages/category/category.component';
+import { Lesson } from './core/models/lesson';
 
 export const routes: Routes = [
   {
@@ -31,6 +33,19 @@ export const routes: Routes = [
             return contentService
               .getLessonById(route.paramMap.get('id')!)
               .pipe(catchError(() => of(null)));
+          },
+        },
+      },
+      {
+        path: 'categories/:id',
+        component: CategoryComponent,
+        resolve: {
+          lessons: (route: ActivatedRouteSnapshot) => {
+            const contentService = inject(ContentService);
+
+            return contentService
+              .getLessons(route.paramMap.get('id')!)
+              .pipe(catchError(() => of<Lesson[]>([])));
           },
         },
       },
