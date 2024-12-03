@@ -11,9 +11,9 @@ import { tap } from 'rxjs';
 export class ContentService {
   private readonly http = inject(HttpClient);
 
-  private readonly categoryUrl = '/api/categories';
-  private readonly topicUrl = '/api/topics';
-  private readonly lessonUrl = '/api/lessons';
+  readonly categoryUrl = '/api/categories';
+  readonly topicUrl = '/api/topics';
+  readonly lessonUrl = '/api/lessons';
 
   categories = signal<Category[] | undefined>(undefined);
   topics = signal<Topic[] | undefined>(undefined);
@@ -30,43 +30,27 @@ export class ContentService {
     this.http.get<Lesson>(`${this.lessonUrl}/${id}`);
 
   createCategory = (dto: Partial<Category>) =>
-    this.http
-      .post(this.categoryUrl, dto)
-      .pipe(tap(() => this.loadCategories()));
-  createTopic = (dto: Partial<Topic>) =>
-    this.http.post(this.topicUrl, dto).pipe(tap(() => this.loadTopics()));
-  createLesson = (dto: Partial<Lesson>) =>
-    this.http.post(this.lessonUrl, dto).pipe(tap(() => this.loadLessons()));
+    this.http.post(this.categoryUrl, dto);
+  createTopic = (dto: Partial<Topic>) => this.http.post(this.topicUrl, dto);
+  createLesson = (dto: Partial<Lesson>) => this.http.post(this.lessonUrl, dto);
 
   updateCategory = (id: string, dto: Partial<Category>) =>
-    this.http
-      .put(`${this.categoryUrl}/${id}`, dto)
-      .pipe(tap(() => this.loadCategories()));
+    this.http.put(`${this.categoryUrl}/${id}`, dto);
   updateTopic = (id: string, dto: Partial<Topic>) =>
-    this.http
-      .put(`${this.topicUrl}/${id}`, dto)
-      .pipe(tap(() => this.loadTopics()));
+    this.http.put(`${this.topicUrl}/${id}`, dto);
+
   updateLesson = (id: string, dto: Partial<Lesson>) =>
-    this.http
-      .put(`${this.lessonUrl}/${id}`, dto)
-      .pipe(tap(() => this.loadLessons()));
+    this.http.put(`${this.lessonUrl}/${id}`, dto);
+
   updateContent = (id: string, dto: Partial<Lesson>) =>
-    this.http
-      .patch(`${this.lessonUrl}/${id}/content`, dto)
-      .pipe(tap(() => this.loadLessons()));
+    this.http.patch(`${this.lessonUrl}/${id}/content`, dto);
 
   deleteCategory = (id: string) =>
-    this.http
-      .delete(`${this.categoryUrl}/${id}`)
-      .pipe(tap(() => this.loadCategories()));
-  deleteTopic = (id: string) =>
-    this.http
-      .delete(`${this.topicUrl}/${id}`)
-      .pipe(tap(() => this.loadTopics()));
-  deleteLesson = (id: string) =>
-    this.http
-      .delete(`${this.lessonUrl}/${id}`)
-      .pipe(tap(() => this.loadLessons()));
+    this.http.delete(`${this.categoryUrl}/${id}`);
+
+  deleteTopic = (id: string) => this.http.delete(`${this.topicUrl}/${id}`);
+
+  deleteLesson = (id: string) => this.http.delete(`${this.lessonUrl}/${id}`);
 
   loadCategories() {
     this.getCategories().subscribe((categories) => {
