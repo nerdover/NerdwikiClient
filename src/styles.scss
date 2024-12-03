@@ -51,56 +51,11 @@
   --inverse-on-surface: 239, 243, 226;
   --scrim: 0, 0, 0;
   --shadow: 0, 0, 0;
-  --dark-primary: 151, 217, 69;
-  --dark-on-primary: 31, 55, 0;
-  --dark-secondary: 177, 209, 136;
-  --dark-on-secondary: 31, 55, 0;
-  --dark-tertiary: 93, 220, 176;
-  --dark-on-tertiary: 0, 56, 40;
-  --dark-error: 255, 180, 171;
-  --dark-on-error: 105, 0, 5;
-  --dark-primary-container: 100, 161, 4;
-  --dark-on-primary-container: 25, 47, 0;
-  --dark-secondary-container: 54, 80, 22;
-  --dark-on-secondary-container: 163, 195, 123;
-  --dark-tertiary-container: 5, 164, 124;
-  --dark-on-tertiary-container: 0, 47, 33;
-  --dark-error-container: 147, 0, 10;
-  --dark-on-error-container: 255, 218, 214;
-  --dark-primary-fixed: 178, 246, 95;
-  --dark-primary-fixed-dim: 151, 217, 69;
-  --dark-on-primary-fixed: 16, 32, 0;
-  --dark-on-primary-fixed-variant: 47, 79, 0;
-  --dark-secondary-fixed: 204, 238, 161;
-  --dark-secondary-fixed-dim: 177, 209, 136;
-  --dark-on-secondary-fixed: 16, 32, 0;
-  --dark-on-secondary-fixed-variant: 52, 78, 20;
-  --dark-tertiary-fixed: 124, 249, 203;
-  --dark-tertiary-fixed-dim: 93, 220, 176;
-  --dark-on-tertiary-fixed: 0, 33, 22;
-  --dark-on-tertiary-fixed-variant: 0, 81, 60;
-  --dark-surface: 17, 21, 11;
-  --dark-surface-dim: 17, 21, 11;
-  --dark-surface-bright: 54, 59, 47;
-  --dark-surface-container: 29, 33, 23;
-  --dark-surface-container-lowest: 11, 15, 7;
-  --dark-surface-container-low: 25, 29, 19;
-  --dark-surface-container-highest: 50, 54, 43;
-  --dark-surface-container-high: 39, 43, 33;
-  --dark-on-surface: 224, 228, 212;
-  --dark-on-surface-variant: 194, 202, 178;
-  --dark-outline: 140, 148, 126;
-  --dark-outline-variant: 66, 73, 55;
-  --dark-inverse-primary: 63, 105, 0;
-  --dark-inverse-surface: 224, 228, 212;
-  --dark-inverse-on-surface: 46, 50, 39;
-  --dark-scrim: 0, 0, 0;
-  --dark-shadow: 0, 0, 0;
 }
 
 body {
   font-family: "Noto Sans Thai";
-  @apply bg-surface text-primary dark:bg-dark-surface dark:text-dark-primary;
+  @apply bg-surface text-primary;
 }
 
 

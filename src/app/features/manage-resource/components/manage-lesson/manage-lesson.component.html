@@ -5,7 +5,7 @@
     <h3 class="text-2xl font-bold">จัดการบทเรียน</h3>
     <button
       (click)="setAndOpenCreatePanel()"
-      class="px-4 py-2 rounded-xl font-semibold bg-primary text-on-primary dark:bg-dark-primary dark:text-dark-on-primary"
+      class="px-4 py-2 rounded-xl font-semibold bg-primary text-on-primary"
     >
       สร้างบทเรียน
     </button>
@@ -17,10 +17,10 @@
         <tr class="*:px-4 *:py-2 *:text-nowrap">
           <th>หมวดหมู่</th>
           <th>หมวดหมู่ย่อย</th>
-          <th class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+          <th class="bg-primary-container/5">
             รหัสบทเรียน
           </th>
-          <th class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+          <th class="bg-primary-container/5">
             ชื่อบทเรียน
           </th>
           <th>สร้างเมื่อ</th>
@@ -33,14 +33,14 @@
       <tbody>
         @for (lesson of contentService.lessons(); track $index) {
         <tr
-          class="*:px-4 *:py-2 *:text-nowrap even:bg-surface-container-high hover:bg-surface-container-highest dark:even:bg-dark-surface-container-high dark:hover:bg-dark-surface-container-highest"
+          class="*:px-4 *:py-2 *:text-nowrap even:bg-surface-container-high hover:bg-surface-container-highest"
         >
           <td>{{ lesson.categoryId }}</td>
           <td>{{ lesson.topicId }}</td>
-          <td class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+          <td class="bg-primary-container/5">
             {{ lesson.id }}
           </td>
-          <td class="bg-primary-container/5 dark:bg-dark-primary-container/5">
+          <td class="bg-primary-container/5">
             {{ lesson.title }}
           </td>
           <td>{{ lesson.createdAt | date }}</td>
@@ -48,7 +48,7 @@
           <td>
             <button
               (click)="setAndOpenEditPanel(lesson)"
-              class="underline font-semibold text-secondary dark:text-dark-secondary"
+              class="underline font-semibold text-secondary"
             >
               แก้ไข
             </button>
@@ -56,7 +56,7 @@
           <td>
             <button
               [routerLink]="['/', 'manage-resource', 'edit', lesson.id]"
-              class="underline font-semibold text-secondary dark:text-dark-secondary"
+              class="underline font-semibold text-secondary"
             >
               เนื้อหา
             </button>
@@ -64,7 +64,7 @@
           <td>
             <button
               (click)="setAndOpenDeletePanel(lesson)"
-              class="underline font-semibold text-error dark:text-dark-error"
+              class="underline font-semibold text-error"
             >
               ลบ
             </button>

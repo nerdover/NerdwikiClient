@@ -2,7 +2,7 @@
   <div>
     <textarea
       [(ngModel)]="content"
-      class="w-full h-full px-4 py-2 rounded-xl bg-surface-container dark:bg-dark-surface-container"
+      class="w-full h-full px-4 py-2 rounded-xl bg-surface-container"
     ></textarea>
   </div>
   <div class="p-4">
@@ -12,7 +12,7 @@
 
 <button
   (click)="confirmPanel.open()"
-  class="fixed bottom-4 right-4 px-4 py-2 rounded-xl shadow font-semibold bg-primary-container text-on-primary-container dark:bg-dark-primary-container dark:text-dark-on-primary-container z-10"
+  class="fixed bottom-4 right-4 px-4 py-2 rounded-xl shadow font-semibold bg-primary-container text-on-primary-container z-10"
 >
   Save
 </button>
@@ -20,12 +20,12 @@
 @if (confirmPanel.isOpened) {
 <v-overlay>
   <div
-    class="bg-surface dark:bg-dark-surface p-8 rounded-3xl max-w-sm mx-auto space-y-8"
+    class="bg-surface p-8 rounded-3xl max-w-sm mx-auto space-y-8"
   >
     <h3 class="text-xl font-bold text-center">อัปเดตเนื้อหา</h3>
     <!-- <p>หมวดหมู่จะหายไปอย่างถาวร ความสัมพันธ์ของข้อมูลจะถูกแทนที่ด้วยค่าว่าง</p> -->
     @if (failured) {
-    <span class="block text-error dark:text-dark-error text-xs">{{ err }}</span>
+    <span class="block text-error text-xs">{{ err }}</span>
     }
     <div class="grid grid-cols-2 place-items-center font-semibold">
       <button (click)="update()">อัปเดต</button>

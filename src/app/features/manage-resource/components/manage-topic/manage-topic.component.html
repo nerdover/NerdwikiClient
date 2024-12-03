@@ -5,7 +5,7 @@
     <h3 class="text-2xl font-bold">จัดการหมวดหมู่ย่อย</h3>
     <button
       (click)="setAndOpenCreatePanel()"
-      class="px-4 py-2 rounded-xl font-semibold bg-primary text-on-primary dark:bg-dark-primary dark:text-dark-on-primary"
+      class="px-4 py-2 rounded-xl font-semibold bg-primary text-on-primary"
     >
       สร้างหมวดหมู่ย่อย
     </button>
@@ -25,7 +25,7 @@
       <tbody>
         @for (topic of contentService.topics(); track $index) {
         <tr
-          class="*:px-4 *:py-2 *:text-nowrap even:bg-surface-container-high hover:bg-surface-container-highest dark:even:bg-dark-surface-container-high dark:hover:bg-dark-surface-container-highest"
+          class="*:px-4 *:py-2 *:text-nowrap even:bg-surface-container-high hover:bg-surface-container-highest"
         >
           <td>{{ topic.categoryId }}</td>
           <td>{{ topic.id }}</td>
@@ -33,7 +33,7 @@
           <td>
             <button
               (click)="setAndOpenEditPanel(topic)"
-              class="underline font-semibold text-secondary dark:text-dark-secondary"
+              class="underline font-semibold text-secondary"
             >
               แก้ไข
             </button>
@@ -41,7 +41,7 @@
           <td>
             <button
               (click)="setAndOpenDeletePanel(topic)"
-              class="underline font-semibold text-error dark:text-dark-error"
+              class="underline font-semibold text-error"
             >
               ลบ
             </button>
