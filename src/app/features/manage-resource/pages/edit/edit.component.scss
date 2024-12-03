@@ -1,0 +1,27 @@
+.tool-bar button {
+  @apply size-8 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center shrink-0;
+}
+
+.tool-group-wrapper {
+  @apply flex flex-col gap-1 place-items-center;
+
+  & > span {
+    @apply text-xs font-semibold;
+  }
+}
+
+.tool-group {
+  @apply flex gap-2;
+}
+
+.tool-bar {
+  @apply flex flex-nowrap gap-4 p-2 overflow-auto;
+
+  &::-webkit-scrollbar {
+    @apply bg-secondary-container size-2 rounded-full;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-secondary rounded-full;
+  }
+}
