@@ -8,16 +8,19 @@
   <h1 class="text-4xl font-black">{{ lesson()?.title }}</h1>
   <p>{{ lesson()?.description }}</p>
   <div class="flex items-center gap-2">
+    @if (lesson()?.category) {
     <div
       class="px-2 py-1 text-xs bg-secondary text-on-secondary font-semibold rounded-lg"
     >
-      {{ lesson()?.categoryId }}
+      {{ lesson()?.category?.name }}
     </div>
+    } @if (lesson()?.topic) {
     <div
       class="px-2 py-1 text-xs bg-tertiary text-on-tertiary font-semibold rounded-lg"
     >
-      {{ lesson()?.topicId }}
+      {{ lesson()?.topic?.name }}
     </div>
+    }
   </div>
   <div>
     <span class="text-xs">4 days ago</span>

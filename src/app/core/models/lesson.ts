@@ -1,3 +1,6 @@
+import { Category } from "./category";
+import { Topic } from "./topic";
+
 export interface Lesson {
   id: string;
   title: string;
@@ -8,4 +11,6 @@ export interface Lesson {
   cover?: string;
   createdAt?: Date;
   updatedAt?: Date;
+  category?: Category;
+  topic?: Topic;
 }
