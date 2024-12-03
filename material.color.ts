@@ -95,3 +95,21 @@ export const materialColors = colors.reduce((acc, key) => {
   acc[key] = `rgba(var(--${key}), 1)`;
   return acc;
 }, {} as any);
+
+export const materialTypography = {
+  primary: {
+    css: {
+      maxWidth: '100%',
+      '--tw-prose-body': 'rgba(var(--primary), 1)',
+      '--tw-prose-headings': 'rgba(var(--primary), 1)',
+      '--tw-prose-links': 'rgba(var(--primary), 1)',
+      '--tw-prose-bold': 'rgba(var(--primary), 1)',
+      '--tw-prose-counters': 'rgba(var(--primary), 1)',
+      '--tw-prose-bullets': 'rgba(var(--primary), 1)',
+      '--tw-prose-hr': 'rgba(var(--primary-container), 1)',
+      '--tw-prose-quotes': 'rgba(var(--primary), 1)',
+      '--tw-prose-quote-borders': 'rgba(var(--primary-container), 1)',
+      '--tw-prose-code': 'rgba(var(--primary), 1)',
+    },
+  },
+};

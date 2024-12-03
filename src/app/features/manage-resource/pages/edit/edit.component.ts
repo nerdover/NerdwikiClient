@@ -5,10 +5,11 @@ import { OverlayComponent } from '../../../../shared/components/overlay/overlay.
 import { Switch } from '../../../../shared/utils/switch';
 import { ContentService } from '../../../../core/services/content.service';
 import { Router } from '@angular/router';
+import { ContentViewComponent } from '../../../../core/components/content-view/content-view.component';
 
 @Component({
   selector: 'v-edit',
-  imports: [FormsModule, OverlayComponent],
+  imports: [FormsModule, OverlayComponent, ContentViewComponent],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss',
 })

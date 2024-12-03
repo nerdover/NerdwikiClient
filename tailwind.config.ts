@@ -1,12 +1,13 @@
 import type { Config } from 'tailwindcss';
-import { materialColors } from './material.color';
+import { materialColors, materialTypography } from './material.color';
 
 export default {
   content: ['./src/**/*.{html,ts}'],
   theme: {
     extend: {
       colors: materialColors,
+      typography: materialTypography,
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 } satisfies Config;

@@ -6,7 +6,7 @@
     ></textarea>
   </div>
   <div class="p-4">
-    <p class="text-2xl font-bold">{{ content }}</p>
+    <v-content-view [content]="content" />
   </div>
 </div>
 
@@ -19,7 +19,9 @@
 
 @if (confirmPanel.isOpened) {
 <v-overlay>
-  <div class="bg-surface dark:bg-dark-surface p-8 rounded-3xl max-w-sm mx-auto space-y-8">
+  <div
+    class="bg-surface dark:bg-dark-surface p-8 rounded-3xl max-w-sm mx-auto space-y-8"
+  >
     <h3 class="text-xl font-bold text-center">อัปเดตเนื้อหา</h3>
     <!-- <p>หมวดหมู่จะหายไปอย่างถาวร ความสัมพันธ์ของข้อมูลจะถูกแทนที่ด้วยค่าว่าง</p> -->
     @if (failured) {
