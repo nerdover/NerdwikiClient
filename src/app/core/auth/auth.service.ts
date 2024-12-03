@@ -49,6 +49,7 @@ export class AuthService {
         this.removeAccessToken();
         this.isSigningIn.set(false);
         this.currentAccessToken.set(null);
+        this.router.navigate(['/sign-in']);
       })
     );
 

@@ -13,7 +13,7 @@
       || auth.currentRoles() === Role.Admin) {
       <li><a routerLink="/manage-resource">จัดการคลัง</a></li>
       }
-      <li>ออกจากระบบ</li>
+      <li><button (click)="auth.signOut().subscribe()">ออกจากระบบ</button></li>
       } @else {
       <li><a routerLink="/sign-in">เข้าสู่ระบบ</a></li>
       }
@@ -37,11 +37,14 @@
     </button>
   </div>
   <nav>
-    <ul>
+    <ul class="*:px-4 *:py-2">
       <li><a routerLink="/">หน้าหลัก</a></li>
       <li><a routerLink="/resource">คลังบทเรียน</a></li>
-      @if (auth.isSigningIn()) {
-      <li>SIGNOUT</li>
+      @if (auth.isSigningIn()) { @if (auth.currentRoles()?.includes(Role.Admin)
+      || auth.currentRoles() === Role.Admin) {
+      <li><a routerLink="/manage-resource">จัดการคลัง</a></li>
+      }
+      <li><button (click)="auth.signOut().subscribe()">ออกจากระบบ</button></li>
       } @else {
       <li><a routerLink="/sign-in">เข้าสู่ระบบ</a></li>
       }

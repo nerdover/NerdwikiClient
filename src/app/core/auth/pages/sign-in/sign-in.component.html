@@ -19,6 +19,7 @@
           <input
             type="text"
             formControlName="username"
+            autocomplete="username"
             class="w-full px-4 py-2 rounded-xl bg-surface-dim dark:bg-dark-surface-dim"
           />
           @if (username?.hasError("required") && username?.touched) {
@@ -32,6 +33,7 @@
           <input
             type="password"
             formControlName="password"
+            autocomplete="current-password"
             class="w-full px-4 py-2 rounded-xl bg-surface-dim dark:bg-dark-surface-dim"
           />
           @if (password?.hasError("required") && password?.touched) {
@@ -43,7 +45,6 @@
       </div>
 
       <button
-        (click)="signIn()"
         class="w-full px-4 py-2 rounded-xl font-semibold bg-primary dark:bg-dark-primary text-on-primary dark:text-dark-on-primary"
       >
         เข้าสู่ระบบ
