@@ -11,6 +11,7 @@ import { ContentService } from '../../../../core/services/content.service';
 import { Panel } from '../../../../core/components/base/panel/panel.component';
 import { Lesson } from '../../../../core/models/lesson';
 import { OverlayComponent } from '../../../../shared/components/overlay/overlay.component';
+import { UploadService } from '../../../../core/services/upload.service';
 
 @Component({
   selector: 'v-update-lesson',
@@ -21,6 +22,7 @@ import { OverlayComponent } from '../../../../shared/components/overlay/overlay.
 export class UpdateLessonComponent extends Panel<Lesson> {
   readonly contentService = inject(ContentService);
   private readonly fb = inject(FormBuilder);
+  private readonly uploadService = inject(UploadService);
 
   form!: FormGroup;
 
@@ -29,7 +31,10 @@ export class UpdateLessonComponent extends Panel<Lesson> {
   failured = false;
   err = '';
 
+  imageUrl?: string;
+
   ngOnInit() {
+    this.imageUrl = this.action().cover;
     this.form = this.fb.group({
       categoryId: [this.action().categoryId ?? '-'],
       topicId: [this.action().topicId ?? '-'],
@@ -56,6 +61,7 @@ export class UpdateLessonComponent extends Panel<Lesson> {
         id: this.action().id,
         title: this.title?.value,
         description: this.description?.value,
+        cover: this.imageUrl,
       })
       .subscribe({
         next: () => {
@@ -86,5 +92,22 @@ export class UpdateLessonComponent extends Panel<Lesson> {
 
   get description() {
     return this.form.get('description');
+  }
+
+  uploadImage(e: Event) {
+    const el = e.target as HTMLInputElement;
+    const file = el.files && el.files[0] ? el.files[0] : null;
+    if (file) {
+      this.uploadService.upload(file).subscribe((filename) => {
+        this.imageUrl = filename;
+      });
+    }
+  }
+
+  clearImageUrl(uploadEl?: HTMLInputElement) {
+    if (uploadEl) {
+      uploadEl.value = '';
+    }
+    this.imageUrl = undefined;
   }
 }

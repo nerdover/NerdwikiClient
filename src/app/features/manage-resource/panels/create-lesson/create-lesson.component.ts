@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { ContentService } from '../../../../core/services/content.service';
 import { Topic } from '../../../../core/models/topic';
+import { UploadService } from '../../../../core/services/upload.service';
 
 @Component({
   selector: 'v-create-lesson',
@@ -21,6 +22,7 @@ import { Topic } from '../../../../core/models/topic';
 export class CreateLessonComponent extends Panel<Lesson> {
   readonly contentService = inject(ContentService);
   private readonly fb = inject(FormBuilder);
+  private readonly uploadService = inject(UploadService);
 
   form!: FormGroup;
 
@@ -28,6 +30,8 @@ export class CreateLessonComponent extends Panel<Lesson> {
 
   failured = false;
   err = '';
+
+  imageUrl?: string;
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -55,6 +59,7 @@ export class CreateLessonComponent extends Panel<Lesson> {
         id: this.id?.value,
         title: this.title?.value,
         description: this.description?.value,
+        cover: this.imageUrl,
       })
       .subscribe({
         next: () => {
@@ -85,5 +90,22 @@ export class CreateLessonComponent extends Panel<Lesson> {
 
   get description() {
     return this.form.get('description');
+  }
+
+  uploadImage(e: Event) {
+    const el = e.target as HTMLInputElement;
+    const file = el.files && el.files[0] ? el.files[0] : null;
+    if (file) {
+      this.uploadService.upload(file).subscribe((filename) => {
+        this.imageUrl = filename;
+      });
+    }
+  }
+
+  clearImageUrl(uploadEl?: HTMLInputElement) {
+    if (uploadEl) {
+      uploadEl.value = '';
+    }
+    this.imageUrl = undefined;
   }
 }

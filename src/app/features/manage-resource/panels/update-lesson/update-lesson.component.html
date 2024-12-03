@@ -38,9 +38,7 @@
             formControlName="title"
           />
           @if (title?.hasError("required") && title?.touched) {
-          <span class="text-error text-xs"
-            >* จำเป็นต้องใส่ชื่อบทเรียน</span
-          >
+          <span class="text-error text-xs">* จำเป็นต้องใส่ชื่อบทเรียน</span>
           }
         </div>
         <div class="flex flex-col gap-1">
@@ -52,11 +50,44 @@
             rows="4"
           ></textarea>
         </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-xs font-semibold">ภาพปก</label>
+          @if (imageUrl) {
+          <div class="h-36 rounded-xl overflow-hidden relative">
+            @let src = '/api/upload/' + imageUrl;
+            <img
+              [src]="src"
+              class="w-full h-full object-cover object-center"
+              alt="Image preview"
+            />
+            <button
+              type="button"
+              (click)="clearImageUrl(upload)"
+              class="absolute right-4 bottom-4 rounded-full flex items-center text-error"
+            >
+              <i class="ms">delete</i>
+            </button>
+          </div>
+          } @else {
+          <button
+            type="button"
+            (click)="upload.click()"
+            class="flex justify-center items-center h-36 bg-surface-container rounded-xl border-2 border-dashed border-primary text-xs"
+          >
+            <i class="ms">photo</i>
+          </button>
+          }
+          <input
+            type="file"
+            accept="image/*"
+            class="hidden"
+            (input)="uploadImage($event)"
+            #upload
+          />
+        </div>
       </div>
       @if (failured) {
-      <span class="block text-error text-xs">{{
-        err
-      }}</span>
+      <span class="block text-error text-xs">{{ err }}</span>
       }
       <div class="grid grid-cols-2 place-items-center font-semibold">
         <button>บันทึก</button>

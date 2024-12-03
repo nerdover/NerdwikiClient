@@ -1,6 +1,10 @@
-<div class="rounded-xl shadow bg-surface-container overflow-hidden">
+<div class="rounded-xl shadow bg-surface-container overflow-hidden h-full">
   <a [routerLink]="['/contents', lesson().id]">
-    <div class="h-36 bg-primary"></div>
+    <div class="h-36 relative bg-surface-dim">
+      @if (lesson().cover) { @let src = '/api/upload/' + lesson().cover;
+      <img [src]="src" class="w-full h-full object-center object-cover" />
+      }
+    </div>
     <div class="space-y-2 p-4">
       <h3 class="text-xl font-bold">{{ lesson().title }}</h3>
       <div class="flex items-center gap-2">

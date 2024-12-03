@@ -1,4 +1,10 @@
 <div class="py-4 space-y-4">
+  @if (lesson()?.cover) {
+  <div class="h-64 relative rounded-xl overflow-hidden">
+    @let src = '/api/upload/' + lesson()?.cover;
+    <img class="object-cover object-center h-full w-full" [src]="src" alt="" />
+  </div>
+  }
   <h1 class="text-4xl font-black">{{ lesson()?.title }}</h1>
   <p>{{ lesson()?.description }}</p>
   <div class="flex items-center gap-2">
