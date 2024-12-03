@@ -15,6 +15,7 @@
     <table class="w-full text-left text-sm">
       <thead>
         <tr class="*:px-4 *:py-2 *:text-nowrap">
+          <th>หมวดหมู่</th>
           <th>รหัสหมวดหมู่ย่อย</th>
           <th>ชื่อหมวดหมู่ย่อย</th>
           <th></th>
@@ -54,15 +55,12 @@
 </div>
 
 @if (createPanel.isOpened) {
-  <v-create-topic [action]="dummy" (closed)="setAndCloseCreatePanel()" />
-  } @if (editPanel.isOpened && currentAction()) {
-  <v-update-topic
-    [action]="currentAction()!"
-    (closed)="setAndCloseEditPanel()"
-  />
-  } @if (deletePanel.isOpened && currentAction()) {
-  <v-delete-topic
-    [action]="currentAction()!"
-    (closed)="setAndCloseDeletePanel()"
-  />
-  }
+<v-create-topic [action]="dummy" (closed)="setAndCloseCreatePanel()" />
+} @if (editPanel.isOpened && currentAction()) {
+<v-update-topic [action]="currentAction()!" (closed)="setAndCloseEditPanel()" />
+} @if (deletePanel.isOpened && currentAction()) {
+<v-delete-topic
+  [action]="currentAction()!"
+  (closed)="setAndCloseDeletePanel()"
+/>
+}
