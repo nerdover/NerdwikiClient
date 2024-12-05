@@ -18,10 +18,12 @@ export const routes: Routes = [
       {
         path: '',
         component: LandingComponent,
+        title: 'หน้าหลัก - เนิร์ดวิกิ',
       },
       {
         path: 'resource',
         component: ResourceComponent,
+        title: 'คลังบทเรียน - เนิร์ดวิกิ',
       },
       {
         path: 'contents/:id',
@@ -40,6 +42,11 @@ export const routes: Routes = [
         path: 'categories/:id',
         component: CategoryComponent,
         resolve: {
+          category: (route: ActivatedRouteSnapshot) => {
+            const contentService = inject(ContentService);
+
+            return contentService.getCategoryById(route.paramMap.get('id')!);
+          },
           lessons: (route: ActivatedRouteSnapshot) => {
             const contentService = inject(ContentService);
 
