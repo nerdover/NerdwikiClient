@@ -7,15 +7,16 @@ import { Manage } from '../../../../core/components/base/manage/manage.component
 import { CreateLessonComponent } from '../../panels/create-lesson/create-lesson.component';
 import { UpdateLessonComponent } from "../../panels/update-lesson/update-lesson.component";
 import { RouterLink } from '@angular/router';
+import { RelativeTimePipe } from '../../../../shared/pipes/relative-time.pipe';
 
 @Component({
   selector: 'v-manage-lesson',
   imports: [
-    DatePipe,
     DeleteLessonComponent,
     CreateLessonComponent,
     UpdateLessonComponent,
-    RouterLink
+    RouterLink,
+    RelativeTimePipe
 ],
   templateUrl: './manage-lesson.component.html',
   styleUrl: './manage-lesson.component.scss',

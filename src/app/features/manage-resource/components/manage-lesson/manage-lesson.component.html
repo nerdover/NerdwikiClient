@@ -17,12 +17,8 @@
         <tr class="*:px-4 *:py-2 *:text-nowrap">
           <th>หมวดหมู่</th>
           <th>หมวดหมู่ย่อย</th>
-          <th class="bg-primary-container/5">
-            รหัสบทเรียน
-          </th>
-          <th class="bg-primary-container/5">
-            ชื่อบทเรียน
-          </th>
+          <th class="bg-primary-container/5">รหัสบทเรียน</th>
+          <th class="bg-primary-container/5">ชื่อบทเรียน</th>
           <th>สร้างเมื่อ</th>
           <th>แก้ไขล่าสุด</th>
           <th></th>
@@ -43,8 +39,12 @@
           <td class="bg-primary-container/5">
             {{ lesson.title }}
           </td>
-          <td>{{ lesson.createdAt | date }}</td>
-          <td>{{ lesson.updatedAt | date }}</td>
+          <td>
+            {{ lesson.createdAt ? (lesson.createdAt | relativeTime) : "" }}
+          </td>
+          <td>
+            {{ lesson.updatedAt ? (lesson.updatedAt | relativeTime) : "" }}
+          </td>
           <td>
             <button
               (click)="setAndOpenEditPanel(lesson)"
