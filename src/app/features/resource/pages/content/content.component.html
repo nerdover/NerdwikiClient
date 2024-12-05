@@ -23,7 +23,15 @@
     }
   </div>
   <div>
-    <span class="text-xs">4 days ago</span>
+    <span class="text-xs"
+      >{{
+        lesson()?.createdAt ? (lesson()!.createdAt! | relativeTime) : ""
+      }}
+      (อัปเดตเมื่อ
+      {{
+        lesson()?.updatedAt ? (lesson()!.updatedAt! | relativeTime) : ""
+      }})</span
+    >
   </div>
   <div>
     <v-content-view [content]="lesson()!.content" />

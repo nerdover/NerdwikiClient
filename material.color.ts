@@ -65,6 +65,22 @@ export const materialTypography = {
       '--tw-prose-quotes': 'rgba(var(--primary), 1)',
       '--tw-prose-quote-borders': 'rgba(var(--primary-container), 1)',
       '--tw-prose-code': 'rgba(var(--primary), 1)',
+      blockquote: {
+        backgroundColor: 'rgba(var(--surface-container),1)',
+        fontStyle: 'normal',
+        paddingTop: '4px',
+        paddingBottom: '4px',
+        quotes: 'none',
+        '&::before': {
+          content: 'none',
+        },
+        p: {
+          margin: '0.5rem 0',
+        },
+        '&::after': {
+          content: 'none',
+        },
+      },
     },
   },
 };

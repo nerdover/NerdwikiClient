@@ -2,10 +2,11 @@ import { Component, inject, input } from '@angular/core';
 import { ContentViewComponent } from '../../../../core/components/content-view/content-view.component';
 import { Lesson } from '../../../../core/models/lesson';
 import { Title } from '@angular/platform-browser';
+import { RelativeTimePipe } from '../../../../shared/pipes/relative-time.pipe';
 
 @Component({
   selector: 'v-content',
-  imports: [ContentViewComponent],
+  imports: [ContentViewComponent, RelativeTimePipe],
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
 })

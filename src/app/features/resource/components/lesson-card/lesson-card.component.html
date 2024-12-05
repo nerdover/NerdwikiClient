@@ -9,52 +9,28 @@
       <h3 class="text-xl font-bold">{{ lesson().title }}</h3>
       <div class="flex items-center gap-2">
         @if (lesson().category) {
-          <div
-            class="px-2 py-1 text-xs bg-secondary text-on-secondary font-semibold rounded-lg"
-          >
-            {{ lesson().category?.name }}
-          </div>
-        }
-        @if (lesson().topic) {
-          <div
-            class="px-2 py-1 text-xs bg-tertiary text-on-tertiary font-semibold rounded-lg"
-          >
-            {{ lesson().topic?.name }}
-          </div>
+        <div
+          class="px-2 py-1 text-xs bg-secondary text-on-secondary font-semibold rounded-lg"
+        >
+          {{ lesson().category?.name }}
+        </div>
+        } @if (lesson().topic) {
+        <div
+          class="px-2 py-1 text-xs bg-tertiary text-on-tertiary font-semibold rounded-lg"
+        >
+          {{ lesson().topic?.name }}
+        </div>
         }
       </div>
       <p class="line-clamp-3 text-sm">
         {{ lesson().description }}
       </p>
-      <!-- <ul class="flex flex-wrap items-center gap-2">
-        <li
-          class="px-2 py-1 text-xs font-semibold bg-primary text-on-primary rounded-full"
-        >
-          Tag1
-        </li>
-        <li
-          class="px-2 py-1 text-xs font-semibold bg-primary text-on-primary rounded-full"
-        >
-          Tag1
-        </li>
-        <li
-          class="px-2 py-1 text-xs font-semibold bg-primary text-on-primary rounded-full"
-        >
-          Tag1
-        </li>
-        <li
-          class="px-2 py-1 text-xs font-semibold bg-primary text-on-primary rounded-full"
-        >
-          Tag1
-        </li>
-        <li
-          class="px-2 py-1 text-xs font-semibold bg-primary text-on-primary rounded-full"
-        >
-          Tag1
-        </li>
-      </ul> -->
       <div>
-        <span class="text-xs">4 days ago</span>
+        <span class="text-xs"
+          >{{ lesson().createdAt ? (lesson().createdAt! | relativeTime) : "" }}
+          @if (lesson().updatedAt) { (อัปเดตเมื่อ
+          {{ lesson().updatedAt! | relativeTime }}) }
+        </span>
       </div>
     </div>
   </a>
