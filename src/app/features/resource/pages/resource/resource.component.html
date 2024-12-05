@@ -1,6 +1,6 @@
 <div class="py-8 space-y-16">
   <section class="space-y-4">
-    <h2 class="text-4xl font-black">Higlight</h2>
+    <h2 class="text-4xl font-black">ไฮไลต์</h2>
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch"
     >
@@ -10,11 +10,10 @@
     </div>
   </section>
   <section class="space-y-4">
-    <h2 class="text-4xl font-black">Categories</h2>
+    <h2 class="text-4xl font-black">หมวดหมู่ทั้งหมด</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       @for (category of categories; track $index) {
       <v-category-card [category]="category" />
-
       }
     </div>
   </section>
